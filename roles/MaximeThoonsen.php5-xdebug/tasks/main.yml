@@ -8,6 +8,8 @@
     dest=/etc/php5/mods-available/xdebug.ini
     owner=root group=root mode=644
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
+  notify:
+    - restart php5-fpm
 
 - name: Copy xdebug INI into conf.d folder.
   template: >
@@ -15,3 +17,5 @@
     dest=/etc/php5/conf.d/xdebug.ini
     owner=root group=root mode=644
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'precise'
+  notify:
+    - restart php5-fpm
